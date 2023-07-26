@@ -6,7 +6,7 @@
 #    By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 12:26:31 by tknibbe           #+#    #+#              #
-#    Updated: 2023/07/26 15:50:47 by tknibbe          ###   ########.fr        #
+#    Updated: 2023/07/26 15:51:30 by tknibbe          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,6 @@ SRC		=	main.c \
 
 OBJ		=	$(SRC:%.c=obj/%.o)
 FSAN	=	-fsanitize=address
-
-#$(OBJ):
-#	gcc -c $(SRC)
-
-#$(NAME): $(OBJ)
-#	gcc $(FSAN) $(OBJ) -o $(NAME)
-#	rm -rf $(OBJ)
 
 obj/%.o : src/%.c
 	mkdir -p obj

@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:39:22 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/07/26 14:08:31 by tknibbe          ###   ########.fr       */
+/*   Updated: 2023/07/26 16:39:52 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,32 @@ int	check_horizontal(int **board, int col)
 	return (0);
 }
 
+int	check_vertical(int **board, int row)
+{
+	int	player;
+	int col;
+
+	if (board[0][row] == 0)
+		return (0);
+	col = 0;
+	player = board[0][row];
+	while (col < 3 && player == board[col][row])
+		col++;
+	if (col == 3)
+		return (1);
+	return (0);
+}
+
 int	check_diagonal(int	**board, int col)
 {
 	int	player;
 	int	row;
-	int	dir;
+	int	dir = -1;
 
 	if (board[col][0] == 0)
 		return (0);
 	if (col == 0)
 		dir = 1;
-	else
-		dir = -1;
 	player = board[col][0];
 	row = 0;
 	while (row < 3)
@@ -52,46 +66,20 @@ int	check_diagonal(int	**board, int col)
 	return (1);
 }
 
-int	check_cols(int	**board)
+int	win_check(t_tic *game)
 {
-	int	col = 0;
-	while (col < 3)
+	int	pos = 0;
+	if (game->moves_made < 5)
+		return (0);
+	while (pos < 3)
 	{
-		if (check_horizontal(board, col))
+		if (check_horizontal(game->board, pos))
 			return (1);
-		else if (col != 1)
-			if (check_diagonal(board, col))
-				return (1);
-		col++;
-	}
-	return (0);
-}
-
-int	check_rows(int **board)
-{
-	int	row = 0;
-	int	col = 0;
-	int	player;
-
-	while(row < 3)
-	{
-		player = board[0][row];
-		if (board[0][row] == 0)
-		{
-			row++;
-			continue ;
-		}
-		while(col < 3 && player == board[col][row])
-			col++;
-		if (col == 3)
+		if (check_vertical(game->board, pos))
 			return (1);
-		col = 0;
-		row++;
+		pos++;
 	}
+	if (check_diagonal(game->board, 0) || check_diagonal(game->board, 2))
+		return (1);
 	return (0);
-}
-
-int	win_check(int **board)
-{
-	return (check_cols(board) || check_rows(board));
 }
