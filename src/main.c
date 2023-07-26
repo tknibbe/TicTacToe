@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:15:07 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/07/26 15:45:01 by tknibbe          ###   ########.fr       */
+/*   Updated: 2023/07/26 16:41:32 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	play(t_tic *game)
 	int	col;
 	int	row;
 
-	while (win_check(game->board) == 0 && game->moves_made < 9)
+	while (win_check(game) == 0 && game->moves_made < 9)
 	{
 		printf("\n\nPlayer #%d, make your move:\n", game->moves_made % 2 + 1);
 		col = get_input("column (vertical)");
