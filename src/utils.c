@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tymonknibbe <tymonknibbe@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:21:17 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/07/26 15:45:18 by tknibbe          ###   ########.fr       */
+/*   Updated: 2023/08/02 11:48:20 by tymonknibbe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void init_game(t_tic **game)
 {
-	int	i;
-	int	j;
+	int	i = 0;
+	int	j = 0;
 
 	(*game) = malloc(sizeof(t_tic));
 	(*game)->board = malloc(sizeof(int *) * 3);
@@ -28,6 +28,7 @@ void init_game(t_tic **game)
 			(*game)->board[i][j] = 0;
 			j++;
 		}
+		printf("\n");
 		j = 0;
 		i++;
 	}
